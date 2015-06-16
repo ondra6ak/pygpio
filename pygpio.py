@@ -24,4 +24,4 @@ class Gpio:
             self.value = 0
     
     def __del__(self):
-        open("/sys/class/unexport", "w").write(str(self.gpio))
+        open("/sys/class/gpio/unexport", "w").write(str(self.gpio))
