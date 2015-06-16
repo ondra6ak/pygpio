@@ -1,7 +1,6 @@
 class Gpio:
     def __init__(self, gpio, direction="out"):
         self.gpio = gpio
-        self.direction = direction
         self.path = "/sys/class/gpio/gpio{}/".format(self.gpio)
 
         open("/sys/class/gpio/export", "w").write(str(self.gpio))
@@ -19,6 +18,9 @@ class Gpio:
             open(self.path + "value", "w").write("1")
         else:
             open(self.path + "value", "w").write("0")
+    
+    def get_direction(self):
+        return open(self.path + "direction", "r").read()
     
     def __del__(self):
         open("/sys/class/gpio/unexport", "w").write(str(self.gpio))
