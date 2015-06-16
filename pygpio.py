@@ -3,7 +3,8 @@ class Gpio:
         self.gpio = gpio
         self.direction = direction
         self.path = "/sys/class/gpio/gpio{}/".format(self.gpio)
-        
+        self.value = 0
+
         open("/sys/class/gpio/export", "w").write(str(self.gpio))
         open(self.path + "direction", "w").write(self.direction)
 
@@ -12,7 +13,7 @@ class Gpio:
         open(self.path + "value", "w").write(str(value))
 
     def get(self):
-        return open(self.path + "value", "r").read()
+        return int(open(self.path + "value", "r").read().replace("\n", ""))
 
     def toggle(self):
         if self.value == 0:
