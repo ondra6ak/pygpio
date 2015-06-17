@@ -7,7 +7,6 @@ class Gpio:
         open(self.path + "direction", "w").write(self.direction)
 
     def set(self, value):
-        self.value = value
         open(self.path + "value", "w").write(str(value))
 
     def get(self):
