@@ -4,7 +4,7 @@ class Gpio:
         self.path = "/sys/class/gpio/gpio{}/".format(self.gpio)
 
         open("/sys/class/gpio/export", "w").write(str(self.gpio))
-        open(self.path + "direction", "w").write(self.direction)
+        open(self.path + "direction", "w").write(direction)
 
     def set(self, value):
         open(self.path + "value", "w").write(str(value))
