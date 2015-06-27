@@ -19,7 +19,7 @@ class Gpio:
             open(self.path + "value", "w").write("0")
     
     def get_direction(self):
-        return open(self.path + "direction", "r").read()
+        return open(self.path + "direction", "r").read().replace("\n", "")
     
     def __del__(self):
         open("/sys/class/gpio/unexport", "w").write(str(self.gpio))
